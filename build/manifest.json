@@ -1,0 +1,20 @@
+{
+  "short_name": "Address Converter",
+  "name": "AddressConverter ChromeExtentionVersion",
+  "manifest_version": 3,
+  "description": "Chrome Extension Sample",
+  "version": "0.1.1",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "icons": {
+    "16": "astar.png",
+    "32": "astar.png",
+    "48": "astar.png",
+    "64": "astar.png",
+    "128": "astar.png"
+  }
+}
