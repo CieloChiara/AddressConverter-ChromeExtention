@@ -1,6 +1,6 @@
 # How to install AddressConverter-ChromeExtention
 
-!(documentation/images/how_to_install.png)
+!(https://github.com/CieloChiara/AddressConverter-ChromeExtention/main/documentation/images/how_to_install.png)
 
 # Getting Started with Create React App
 
