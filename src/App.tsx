@@ -1,11 +1,27 @@
 import React, { useCallback, useState, useMemo } from "react";
-import logo from "./logo.svg";
+import logo from "./astar.png";
 import "./App.css";
 import "./toggle-button.css";
 import * as polkadotCryptoUtils from "@polkadot/util-crypto";
 import * as polkadotUtils from "@polkadot/util";
 
 const SS58_PREFIX = 5;
+
+export enum NETWORKS {
+  kusama = 'kusama',
+  statemine = 'statemine',
+}
+
+const apiProviderConfig = {
+  [NETWORKS.kusama]: {
+      id: NETWORKS.kusama,
+      wsProviderUrl: 'wss://kusama-rpc.polkadot.io',
+  },
+  [NETWORKS.statemine]: {
+      id: NETWORKS.statemine,
+      wsProviderUrl: 'wss://kusama-statemine-rpc.paritytech.net',
+  },
+}
 
 function App() {
   const [addressType, setAddressType] = useState<"H160" | "SS58">("SS58");
@@ -22,7 +38,11 @@ function App() {
         polkadotCryptoUtils.addressToEvm(addressInput, true)
       );
     } else {
-      return "invalid";
+      if (!addressInput) {
+        return "Please enter address";
+      } else {
+        return "Invalid";
+      }
     }
   }, [addressInput, addressType, addressPrefix]);
 
@@ -34,7 +54,11 @@ function App() {
     ) {
       return polkadotCryptoUtils.evmToAddress(addressInput, addressPrefix);
     } else {
-      return "invalid";
+      if (!addressInput) {
+        return "Please enter address";
+      } else {
+        return "Invalid";
+      }
     }
   }, [addressInput, addressPrefix, addressType]);
 
@@ -48,6 +72,8 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Current address scheme: {addressType}</p>
+      </header>
+      <main className="App-main">
         <label className="switch">
           <input
             type="checkbox"
@@ -58,29 +84,24 @@ function App() {
           />
           <span className="slider round"></span>
         </label>
-        <p>Change address prefix</p>
+        <h3>Change address prefix</h3>
         <input
           type="text"
           value={addressPrefix}
           onChange={(e) => setAddressPrefix(Number.parseInt(e.target.value))}
         ></input>
-        <p>Input address</p>
+        <h3>Input address</h3>
         <input
           type="text"
           value={addressInput}
           onChange={(e) => setAddressInput(e.target.value)}
         ></input>
-        <p>{addressInput}</p>
-        <p>{resultAddress}</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <div className="App-results">
+        <h3>Results</h3>
+        <p className="App-originalAddress">{addressInput}</p>
+        <p className="App-convertAddress">{resultAddress}</p>
+        </div>
+      </main>
     </div>
   );
 }

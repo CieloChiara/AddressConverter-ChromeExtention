@@ -1,25 +1,20 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
+  "short_name": "Address Converter",
+  "name": "AddressConverter ChromeExtentionVersion",
+  "manifest_version": 3,
+  "description": "Chrome Extension Sample",
+  "version": "0.1.1",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "host_permissions": [
+    "<all_urls>"
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "icons": {
+    "16": "astar.png",
+    "32": "astar.png",
+    "48": "astar.png",
+    "64": "astar.png",
+    "128": "astar.png"
+  }
 }
